@@ -29,5 +29,7 @@ try:
 
     if all(1 <= val <= 10000 for val in (N, X)):
         low_finder(X, lstA)
+    else:
+        print("숫자똑바로쳐써라")
 except Exception as e:
     print(e)
