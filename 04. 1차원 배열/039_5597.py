@@ -82,7 +82,7 @@ student_list = list(range(1, 31))
 
 for _ in range(28):
     num = int(input())
-    student_list.remove(num)
+    student_list.remove(num) # 리스트에서 num 제거
 
 print(min(student_list))
 print(max(student_list))
