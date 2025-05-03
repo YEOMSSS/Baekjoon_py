@@ -47,8 +47,10 @@ cnt_list = [0] * 26
 
 for char in string:
     cnt_list[ord(char) - ord("A")] += 1
-
-if cnt_list.count(max(cnt_list)) > 1:
-    print("?")
+# 리스트에 알파벳이 나온 횟수가 들어간다.
+max_cnt = max(cnt_list) # 리스트에서 가장 큰 숫자
+if cnt_list.count(max_cnt) > 1: # 가장 큰 숫자가 두번 이상 나왔어?
+    print("?") # 그럼 가장 큰게 겹치는거지, 뭐.
 else:
-    print(chr(cnt_list.index(max(cnt_list)) + ord('A')))
+    print(chr(cnt_list.index(max_cnt) + ord('A')))
+# 안겹치면 리스트에서 가장 큰 숫자의 인덱스를 뽑아서 ord(A)에 더한 후 다시 chr()로 변환한다.
