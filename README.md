@@ -48,7 +48,7 @@ list.append() : 리스트에 요소를 추가한다.
 float() : 실수로 자료형을 변환한다.   
 break : 그 자리에서 반복문 전체를 종료시킨다.   
 continue : 그 자리에서 현재 반복을 멈추고, 다음 반복을 진행한다.   
-## 7. 2차원 배열 250504 ~ 
+## 7. 2차원 배열 250504 ~ 250504
 def matrix_maker(row): return [list(map(int, input().split())) for _ in range(row)]   
 result = [[matrix1[i][j] + matrix2[i][j] for j in range(M)] for i in range(N)] : 보기 좋은 코드   
 [a, b, c] + [d, e] == [a, b, c, d, e] : 리스트끼리 더하면 합쳐진 리스트가 된다.
