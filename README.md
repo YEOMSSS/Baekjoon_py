@@ -53,3 +53,5 @@ def matrix_maker(row): return [list(map(int, input().split())) for _ in range(ro
 result = [[matrix1[i][j] + matrix2[i][j] for j in range(M)] for i in range(N)] : 보기 좋은 코드   
 [a, b, c] + [d, e] == [a, b, c, d, e] : 리스트끼리 더하면 합쳐진 리스트가 된다.
 a, b = divmod(c, d) : c // d == a, c % d == b
+abcde를 list(input()) 으로 받으면 ["a", "b", "c", "d", "e"] 로 저장된다.
+abcde를 list(input().split()) 으로 받으면 ["abcde"]로 저장된다. 공백 기준 구분이므로.
