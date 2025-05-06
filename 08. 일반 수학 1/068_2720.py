@@ -33,10 +33,31 @@ C의 단위는 센트이다. (1달러 = 100센트) (1<=C<=500)
 1 0 0 0
 7 1 1 4
 '''
+'''
+cnt = int(input())
+
+for _ in range(cnt):
+    charge = int(input())
+    coin_list = [
+        charge // 25,
+        (charge % 25) // 10,
+        (charge % 25 % 10) // 5,
+        (charge % 5) // 1
+    ]
+    print(*coin_list)
+'''
+# 나쁘지 않지만 뭔가 보기 안좋다. %가 너무 많다.
 
 cnt = int(input())
 
 for _ in range(cnt):
     charge = int(input())
-    list = [charge // 25, (charge % 25) // 10, (charge % 25 % 10) // 5, (charge % 5) // 1]
-    print(*list)
+    Quar = charge // 25
+    charge %= 25
+    Dime = charge // 10
+    charge %= 10
+    Nick = charge // 5
+    Penn = charge % 5
+    print(Quar, Dime, Nick, Penn)
+
+# 이해가 쏙쏙 되잖아
