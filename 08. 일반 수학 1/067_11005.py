@@ -43,7 +43,7 @@ number = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 answer = ""
 while N: # N이 0이 되면 반복문을 종료
     answer += number[N % B] # 가장 낮은 자릿수부터 문자열에 저장됨
-    N //= B # N을 B로 한번 나눠줌. B를 i제제곱하는것과 동일한 의미
+    N //= B # N을 B로 한번 나눠줌. B를 i제곱하는것과 동일한 의미
 
 print(answer[::-1]) # 가장 높은 자릿수부터 print 함
 
