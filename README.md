@@ -55,12 +55,12 @@ result = [[matrix1[i][j] + matrix2[i][j] for j in range(M)] for i in range(N)] :
 a, b = divmod(c, d) : c // d == a, c % d == b
 abcde를 list(input()) 으로 받으면 ["a", "b", "c", "d", "e"] 로 저장된다.
 abcde를 list(input().split()) 으로 받으면 ["abcde"]로 저장된다. 공백 기준 구분이므로.
-## 8. 일반 수학 1 250505 ~ 
+## 8. 일반 수학 1 250505 ~ 250507
 iterable : 보통 반복 가능한 객체를 의미한다. 리스트, 문자열, 튜플 등   
 for index, value in enumerate(iterable) : index와 value에 iterable의 인덱스와 값이 들어간다.   
-int(string, base) : string을 base진법으로 변환한다. 그냥 int(x)에는 ,10 이 생략되어 있는 것이다. 기본 10진수.
-* math.ceil()은 올림, math.floor()는 내림.
-* int()는 소수점 아래를 그냥 지움.
-* round()는 반올림.
-올림(x / y) == 내림(x − 1 / y) + 1
+int(string, base) : string을 base진법으로 변환한다. 그냥 int(x)에는 ,10 이 생략되어 있는 것이다. 기본 10진수.   
+* math.ceil()은 올림, math.floor()는 내림.   
+* int()는 소수점 아래를 그냥 지움.   
+* round()는 반올림.   
+올림(x / y) == 내림(x − 1 / y) + 1   
 
