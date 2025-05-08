@@ -13,4 +13,4 @@ for i in range(1, num + 1):
     if prime_judge(i):
         print(i, end = " ")
 '''
-print(prime_judge(285054361))
+print(prime_judge(101))
