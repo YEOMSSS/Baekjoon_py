@@ -63,6 +63,9 @@ int(string, base) : string을 base진법으로 변환한다. 그냥 int(x)에는
 * int()는 소수점 아래를 그냥 지움.   
 * round()는 반올림.   
 올림(x / y) == 내림(x − 1 / y) + 1   
-## 9. 약수, 배수와 소수 250507 ~ 
+## 9. 약수, 배수와 소수 250507 ~ 250508
 empty list는 False를, not empty list는 True를 return한다. if not list: 같은 게 가능함.   
-솟수 판독기를 만들 땐 int(math.sqrt())를 사용해 제곱근까지만 판단하자.
+솟수 판독기를 만들 땐 int(math.sqrt())를 사용해 제곱근까지만 판단하자. num ** 0.5 도 좋다.   
+for - else 문법 : for 안에서 break 없이 모든 반복이 끝나면 else를 실행.   
+77번, 78번에서 소수 판정과 소인수분해 잘 알아두자.
+## 10. 기하: 직사각형과 삼각형 250508 ~ 
