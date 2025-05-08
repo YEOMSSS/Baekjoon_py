@@ -64,4 +64,5 @@ int(string, base) : string을 base진법으로 변환한다. 그냥 int(x)에는
 * round()는 반올림.   
 올림(x / y) == 내림(x − 1 / y) + 1   
 ## 9. 약수, 배수와 소수 250507 ~ 
-
+empty list는 False를, not empty list는 True를 return한다. if not list: 같은 게 가능함.   
+솟수 판독기를 만들 땐 int(math.sqrt())를 사용해 제곱근까지만 판단하자.
