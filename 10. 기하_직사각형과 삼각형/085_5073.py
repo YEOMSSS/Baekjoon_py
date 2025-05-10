@@ -49,3 +49,5 @@ while True:
         print("Isosceles")
     else:
         print("Scalene")
+
+# 이건 내가 제일 잘 푼거같다. 딴놈들도 w같이 풀어놨네.
