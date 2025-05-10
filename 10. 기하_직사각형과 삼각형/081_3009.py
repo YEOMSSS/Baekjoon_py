@@ -24,3 +24,17 @@
 
 # x, y는 각각 똑같은거 2개와 다른거 1개를 입력받음.
 # 다른 x와 다른 y를 출력하면 됨.
+
+def one_counter(coords):
+    for val in set(coords):
+        if coords.count(val) == 1:
+            return val
+        
+x1, y1 = map(int, input().split())
+x2, y2 = map(int, input().split())
+x3, y3 = map(int, input().split())
+
+x_coords = [x1, x2, x3]
+y_coords = [y1, y2, y3]
+
+print(one_counter(x_coords), one_counter(y_coords))
