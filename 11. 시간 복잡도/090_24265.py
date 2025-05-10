@@ -49,7 +49,7 @@ for i in range(1, size):
 '''
 # O(n)의 방법
 count = 0
-for  i in range(1, size):
+for i in range(1, size):
     count += size - i
 '''
 # O(1)의 방법
