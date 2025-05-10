@@ -52,3 +52,49 @@ x 축의 양의방향을 동쪽, y 축의 양의방향을 북쪽이라고 가정
 예제 출력 3 
 9
 '''
+
+# 아이디어는 좌표들 중 가장 큰 x좌표와 y좌표, 가장 작은 걸 찾는 것이다.
+# 그리고 그것들을 이용해서 직사각형을 만들면 된다.
+'''
+cnt = int(input())
+coords = []
+for _ in range(cnt):
+    coords.append(list(map(int, input().split())))
+
+x_max = max(arr[0] for arr in coords)
+x_min = min(arr[0] for arr in coords)
+y_max = max(arr[1] for arr in coords)
+y_min = min(arr[1] for arr in coords)
+
+print((x_max - x_min) * (y_max - y_min))
+'''
+# append가 너무 많이 되니 오래 걸린다.
+'''
+cnt = int(input())
+
+x_min = y_min = float('inf') # inf는 어떤 수보다도 크다.
+x_max = y_max = float('-inf') # -inf는 어떤 수보다도 작다.
+
+for _ in range(cnt):
+    x, y = map(int, input().split())
+    x_min = min(x_min, x) # 들어오는 x, y마다 최대, 최소를 갱신한다.
+    x_max = max(x_max, x)
+    y_min = min(y_min, y)
+    y_max = max(y_max, y)
+
+print((x_max - x_min) * (y_max - y_min))
+# 입력이 한번만 되면 max와 min이 같기 때문에 0이 반환된다.
+'''
+# 근데 이것도 꽤 걸린다. 더 빠르게?
+
+import sys
+
+cnt = int(sys.stdin.readline())
+arr = list(map(int, sys.stdin.read().split())) # 끝내려면 EOF가 필요하다.
+# 사용자가 직접 입력할 땐 불편하지만.. 백준은 자동 채점 프로그램이잖아?
+
+# x, y = arr[::2], arr[1::2]
+x = arr[::2] # 인덱스 0부터 끝까지 2칸씩 뛰어서 저장
+y = arr[1::2] # 인덱스 1부터 끝까지 2칸씩 뛰어서 저장
+
+print((max(x) - min(x)) * (max(y) - min(y)))
