@@ -90,3 +90,8 @@ O형 시간복잡도 표현은 최고차항만 표시된다. 어차피 밑으로
 ## 12. 브루트 포스 250511 ~ 
 tuple : 변경할 수 없는 리스트. 소괄호로 감싸서 만든다.
 itertools.combinations(list, num) : list에서 서로 다른 요소 num개를 갖는 조합을 튜플로 생성한다.
+list = map(int, input().split()) : map() 은 이터레이터다. list를 한번 사용하면 증발한다.
+list = list(map(int, input().split())) : 이건 계속 사용할 수 있다.
+a, b = map(int, input().split()) : 얘는 이터레이터의 값이 a, b에 복제된 거라 계속 사용할 수 있다.
+numer(numerator) : 보통 분자의 변수명으로 사용.
+denom(denominator) : 보통 분모의 변수명으로 사용.
