@@ -86,13 +86,15 @@ list = [int(input()) for _ in range(cnt)] : 이러면 엔터로 구분되게 cnt
 * 같은 경우에 실행시간이 +1, +2만큼 늘어나면 O(log(n))이라고 합니다.   
 * 같은 경우에 실행시간이 바뀌지 않으면 O(1)이라고 합니다.   
 O형 시간복잡도 표현은 최고차항만 표시된다. 어차피 밑으로는 떨거지니까.   
-코딩이 아니라 수학을 하는 느낌이다, 뭔가 w같아.
-## 12. 브루트 포스 250511 ~ 
-tuple : 변경할 수 없는 리스트. 소괄호로 감싸서 만든다.
-itertools.combinations(list, num) : list에서 서로 다른 요소 num개를 갖는 조합을 튜플로 생성한다.
-list = map(int, input().split()) : map() 은 이터레이터다. list를 한번 사용하면 증발한다.
-list = list(map(int, input().split())) : 이건 계속 사용할 수 있다.
-a, b = map(int, input().split()) : 얘는 이터레이터의 값이 a, b에 복제된 거라 계속 사용할 수 있다.
-numer(numerator) : 보통 분자의 변수명으로 사용.
-denom(denominator) : 보통 분모의 변수명으로 사용.
-sum(x > 10 for x in [5, 11, 20]) : 결과는 2다. sum 안에 있는 True를 1로 계산된다.
+코딩이 아니라 수학을 하는 느낌이다, 뭔가 w같아.   
+## 12. 브루트 포스 250511 ~ 250513
+tuple : 변경할 수 없는 리스트. 소괄호로 감싸서 만든다.   
+itertools.combinations(list, num) : list에서 서로 다른 요소 num개를 갖는 조합을 튜플로 생성한다.   
+list = map(int, input().split()) : map() 은 이터레이터다. list를 한번 사용하면 증발한다.   
+list = list(map(int, input().split())) : 이건 계속 사용할 수 있다.   
+a, b = map(int, input().split()) : 얘는 이터레이터의 값이 a, b에 복제된 거라 계속 사용할 수 있다.   
+numer(numerator) : 보통 분자의 변수명으로 사용.   
+denom(denominator) : 보통 분모의 변수명으로 사용.   
+sum(x > 10 for x in [5, 11, 20]) : 결과는 2다. sum 안에 있는 True를 1로 계산된다.   
+
+# 2025.05.13 100 solve 달성!!
