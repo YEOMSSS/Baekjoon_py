@@ -41,3 +41,16 @@
 예제 출력 5 
 166699
 '''
+count_target = int(input())
+
+num_current = 665 # while이 시작되자마자 1이 더해져 666이 된다.
+count_current = 0
+
+while count_current != count_target:
+    num_current += 1
+    if "666" in str(num_current):
+        count_current += 1
+print(num_current)
+
+# 이건 이 이상으로 들어가면 너무 머리가 아파질 것 같다.
+# 어차피 시간제한도 2초고, 10000일 때 2666799니까 시간내로 돌아가겠지.
