@@ -69,7 +69,7 @@ empty list는 False를, not empty list는 True를 return한다. if not list: 같
 * for - else 문법 : for 안에서 break 없이 모든 반복이 끝나면 else를 실행.   
 77번, 78번에서 소수 판정과 소인수분해 잘 알아두자.   
 ## 10. 기하: 직사각형과 삼각형 250508 ~ 250510
-inf, -inf: infinity는 어떤 수보다도 크기 때문에 초기값으로 자주 이용한다.   
+float("inf"), float("-inf"): infinity는 어떤 수보다도 크기 때문에 초기값으로 자주 이용한다.   
 arr[::2] : 슬라이싱이다. 배열을 처음부터 두 칸씩 뛰며 읽는다. 인덱스 0, 2, 4...   
 arr[1::2] : 배열을 1번 인덱스부터 두 칸씩 뛰며 읽는다. 인덱스 1, 3, 5...   
 * list[start:stop:step]   
@@ -95,3 +95,4 @@ list = list(map(int, input().split())) : 이건 계속 사용할 수 있다.
 a, b = map(int, input().split()) : 얘는 이터레이터의 값이 a, b에 복제된 거라 계속 사용할 수 있다.
 numer(numerator) : 보통 분자의 변수명으로 사용.
 denom(denominator) : 보통 분모의 변수명으로 사용.
+sum(x > 10 for x in [5, 11, 20]) : 결과는 2다. sum 안에 있는 True를 1로 계산된다.
