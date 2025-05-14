@@ -8,11 +8,14 @@
 
 # 알고리즘 기초 1/2
 ## 200. 자료구조 1 250513 ~ 
-stack : LIFO(Last In, First Out) 구조. 마지막에 넣은 걸 제일 먼저 꺼낸다. python에선 list로 사용.
-list.pop() : 괄호 안에 아무것도 없다면 리스트의 마지막 요소 list[-1]을 지운다.
-스택에서 가장 위(top) : stack[-1] 을 의미한다. 
-print("\n".join(map(str, output))) : output(리스트)의 요소들을 \n으로 연결해 출력한다. .join은 str에만 작동
+stack : LIFO(Last In, First Out) 구조. 마지막에 넣은 걸 제일 먼저 꺼낸다. python에선 list로 사용.   
+list.pop() : 괄호 안에 아무것도 없다면 리스트의 마지막 요소 list[-1]을 지운다.   
+스택에서 가장 위(top) : stack[-1] 을 의미한다.   
+print("\n".join(map(str, output))) : output(리스트)의 요소들을 \n으로 연결해 출력한다. .join은 str에만 작동   
 
+    조건문을 한 줄로 써보자.
+    print("YES" if balance == 0 else "NO") : 0이면 YES 출력, 0이 아니면 NO 출력
+    balance += 1 if char == "(" else -1 : "("면 += 1, 아니면 += -1
 # 백준 단계별로 풀어보기 1 ~ 12
 ## 12. 브루트 포스 250511 ~ 250513
 tuple : 변경할 수 없는 리스트. 소괄호로 감싸서 만든다.   
