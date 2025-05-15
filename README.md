@@ -16,6 +16,12 @@ print("\n".join(map(str, output))) : output(리스트)의 요소들을 \n으로 
     조건문을 한 줄로 써보자.
     print("YES" if balance == 0 else "NO") : 0이면 YES 출력, 0이 아니면 NO 출력
     balance += 1 if char == "(" else -1 : "("면 += 1, 아니면 += -1
+print(*list, sep= "") : 리스트의 요소를 ""으로 나눠 출력한다.   
+* deque : 양쪽 끝에서 삽입, 삭제가 가능한 큐. appendleft()와 popleft()를 사용할 수 있다.
+if list : list에 요소가 있으면 True, 요소가 없으면 False   
+
+
+
 # 백준 단계별로 풀어보기 1 ~ 12
 ## 12. 브루트 포스 250511 ~ 250513
 tuple : 변경할 수 없는 리스트. 소괄호로 감싸서 만든다.   
