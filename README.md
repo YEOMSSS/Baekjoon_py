@@ -7,7 +7,12 @@
 2025.05.13 100 solve 달성!!   
 
 # 알고리즘 기초 1/2
-## 200. 자료구조 1 250513 ~ 
+## 201. 자료구조 1 (연습) 250515 ~ 
+#### 상태 플래그 (108번 참고)
+상태 플래그는 프로그램이 현재 어떤 상태(모드)에 있는지를 표시하는 변수다.   
+이 값을 바꾸면서 흐름이나 동작 방식을 다르게 제어할 수 있다.   
+
+## 200. 자료구조 1 250513 ~ 250515
 stack : LIFO(Last In, First Out) 구조. 마지막에 넣은 걸 제일 먼저 꺼낸다. python에선 list로 사용.   
 list.pop() : 괄호 안에 아무것도 없다면 리스트의 마지막 요소 list[-1]을 지운다.   
 스택에서 가장 위(top) : stack[-1] 을 의미한다.   
@@ -17,8 +22,23 @@ print("\n".join(map(str, output))) : output(리스트)의 요소들을 \n으로 
     print("YES" if balance == 0 else "NO") : 0이면 YES 출력, 0이 아니면 NO 출력
     balance += 1 if char == "(" else -1 : "("면 += 1, 아니면 += -1
 print(*list, sep= "") : 리스트의 요소를 ""으로 나눠 출력한다.   
-* deque : 양쪽 끝에서 삽입, 삭제가 가능한 큐. appendleft()와 popleft()를 사용할 수 있다.
+* deque : 양쪽 끝에서 삽입, 삭제가 가능한 큐. appendleft()와 popleft()를 사용할 수 있다.   
+
+deque는 rotate가 가능한 자료구조이다.
+
+    rotate(-1)은 왼쪽으로 한 칸, rotate(1)은 오른쪽으로 한 칸.
+    Queue = deque([1, 2, 3, 4 ,5])
+    Queue.rotate(-1) : deque([2, 3, 4, 5, 1])
+    Queue.rotate(1) : deque([5, 1, 2, 3, 4]) 이런 느낌이다.
 if list : list에 요소가 있으면 True, 요소가 없으면 False   
+match - case 문법 : 패턴 매칭에서 if - elif 문법의 대체제. 리스트 같은 패턴도 match가 가능하다.   
+즉, match는 값에 따라 어떤 일을 할지 결정할 때,   
+if는 조건에 따라 흐름을 제어할 때 사용하는 것이 핵심 포인트이이다.   
+
+    cmd = ["push", "10"]
+    match cmd:
+        case ["push", value]:
+            print(f"{value}를 push")
 
 
 
