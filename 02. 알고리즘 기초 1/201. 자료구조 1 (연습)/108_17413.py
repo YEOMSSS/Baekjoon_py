@@ -62,7 +62,7 @@ for char in string:
         in_tag = True # < 만났으니 버튼 켜준다.
         temp += char
     elif char == ">":
-        in_tag = False # 일단 버튼부터 끄고고
+        in_tag = False # 일단 버튼부터 끄고
         temp += char # > 까지 temp에 넣어주고
         answer += temp # 그대로 answer에 넣어준다.
         temp = "" # 그리고 temp 초기화
