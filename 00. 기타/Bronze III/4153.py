@@ -22,12 +22,16 @@ right
 '''
 # 250518
 
+import sys
+input = sys.stdin.readline
+
 while True:
     nums = list(map(int, input().split()))
     nums.sort() # 정렬 후 None을 반환하므로 할당하진 말자.
-    if nums[-1] == 0: # 제일 큰 수가 0이면 종료료
+    if nums[-1] == 0: # 제일 큰 수가 0이면 종료
         break
-
+    # if nums == [0, 0, 0]:
+    #     break
     if nums.pop()**2 == nums[0]**2 + nums[1]**2:
         print("right")
     else:
