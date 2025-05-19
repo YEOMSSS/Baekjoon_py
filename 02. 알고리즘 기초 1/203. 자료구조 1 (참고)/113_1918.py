@@ -129,3 +129,5 @@ while stack:
     answer.append(stack.pop()) # 리스트 뒤집기보다 이렇게 하는게 좋대.
 
 print("".join(answer))
+
+# 이게 골드인가..
