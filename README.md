@@ -24,19 +24,19 @@ divmod(a, b) 는 (a // b, a % b) 튜플을 반환한다.
 02.203.113_1918 후위 표기식 : 다시 풀어보면 또 헷갈릴 듯.    
 
 # 02. 알고리즘 기초 1/2
-
 ## 301. 수학 1 (연습) 250522 ~
-#### itertools.combinations(list, num)
-list에서 서로 다른 요소 num개를 갖는 조합을 튜플 형태로 생성한다.   
-pairs = list(combinations(arr, 2))의 형태로 사용한다.
-pairs = [(arr[i], arr[j]) for i, j in combinations(list, num)]과 같으며,
-pairs = [(arr[i], arr[j]) for i in range(len(arr)) for j in range(i + 1, len(arr))]와 같다.   
-
 #### itertools.combinations(list, num)
 list에서 서로 다른 요소 중 num개를 선택하는 조합을 **중복 없이 튜플 형태로 생성**한다.  
 `pairs = list(combinations(arr, 2))` 형태로 사용한다.   
 `pairs = [(arr[i], arr[j]) for i in range(len(arr)) for j in range(i + 1, len(arr))]` 은   
 `pairs = [(i, j) for i, j in combinations(arr, 2)]` 로 나타낼 수 있다.
+
+#### abs(num)
+절댓값을 반환한다.
+
+#### functools.reduce(function, iterable)
+iterable의 처음 두 요소부터 시작해서 하나씩 function을 누적해 적용한다.
+만약 iterable의 길이가 1이라면 함수를 호출하지 않고 하나뿐인 요소를 그대로 반환한다.
 
 ## 300. 수학 1 250520 ~ 250521
 #### 최대공약수와 최소공배수 찾기
@@ -120,7 +120,6 @@ if는 조건에 따라 흐름을 제어할 때 사용하는 것이 핵심 포인
 
 
 # 01. 단계별로 풀어보기 1 ~ 12 250416 ~ 250513
-
 ## 12. 브루트 포스 250511 ~ 250513
 tuple : 변경할 수 없는 리스트. 소괄호로 감싸서 만든다.   
 list = map(int, input().split()) : map() 은 이터레이터다. list를 한번 사용하면 증발한다.   
