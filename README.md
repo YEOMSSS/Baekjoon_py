@@ -25,7 +25,20 @@ divmod(a, b) 는 (a // b, a % b) 튜플을 반환한다.
 
 # 02. 알고리즘 기초 1/2
 
-## 300. 수학 1 250520 ~ 
+## 301. 수학 1 (연습) 250522 ~
+#### itertools.combinations(list, num)
+list에서 서로 다른 요소 num개를 갖는 조합을 튜플 형태로 생성한다.   
+pairs = list(combinations(arr, 2))의 형태로 사용한다.
+pairs = [(arr[i], arr[j]) for i, j in combinations(list, num)]과 같으며,
+pairs = [(arr[i], arr[j]) for i in range(len(arr)) for j in range(i + 1, len(arr))]와 같다.   
+
+#### itertools.combinations(list, num)
+list에서 서로 다른 요소 중 num개를 선택하는 조합을 **중복 없이 튜플 형태로 생성**한다.  
+`pairs = list(combinations(arr, 2))` 형태로 사용한다.   
+`pairs = [(arr[i], arr[j]) for i in range(len(arr)) for j in range(i + 1, len(arr))]` 은   
+`pairs = [(i, j) for i, j in combinations(arr, 2)]` 로 나타낼 수 있다.
+
+## 300. 수학 1 250520 ~ 250521
 #### 최대공약수와 최소공배수 찾기
 최대공약수(a, b) * 최소공배수(a, b) = a * b 이다.   
 math.gcd(a, b) 는 최대공약수를 찾는다.   
@@ -110,7 +123,6 @@ if는 조건에 따라 흐름을 제어할 때 사용하는 것이 핵심 포인
 
 ## 12. 브루트 포스 250511 ~ 250513
 tuple : 변경할 수 없는 리스트. 소괄호로 감싸서 만든다.   
-itertools.combinations(list, num) : list에서 서로 다른 요소 num개를 갖는 조합을 튜플로 생성한다.   
 list = map(int, input().split()) : map() 은 이터레이터다. list를 한번 사용하면 증발한다.   
 list = list(map(int, input().split())) : 이건 계속 사용할 수 있다.   
 a, b = map(int, input().split()) : 얘는 이터레이터의 값이 a, b에 복제된 거라 계속 사용할 수 있다.   
