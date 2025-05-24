@@ -25,7 +25,11 @@ divmod(a, b) 는 (a // b, a % b) 튜플을 반환한다.
 02.301.129_2089 -2진수 : 이건 진짜 또 풀어볼만 하다. 진수변환의 끝.
 
 # 02. 알고리즘 기초 1/2
-## 301. 수학 1 (연습) 250522 ~
+## 303. 수학 1 (참고) 250524 ~ 250524
+#### enumerate(iterable)
+`for index, value in enumerate(iterable)` index와 value에 iterable의 인덱스와 값이 들어간다.   
+
+## 301. 수학 1 (연습) 250522 ~ 250524
 #### itertools.combinations(list, num)
 list에서 서로 다른 요소 중 num개를 선택하는 조합을 **중복 없이 튜플 형태로 생성**한다.  
 `pairs = list(combinations(arr, 2))` 형태로 사용한다.   
@@ -169,7 +173,6 @@ empty list는 False를, not empty list는 True를 return한다. if not list: 같
 
 ## 8. 일반 수학 1 250505 ~ 250507
 iterable : 보통 반복 가능한 객체를 의미한다. 리스트, 문자열, 튜플 등   
-for index, value in enumerate(iterable) : index와 value에 iterable의 인덱스와 값이 들어간다.   
 int(string, base) : string을 base진법으로 변환한다. 그냥 int(x)에는 ,10 이 생략되어 있는 것이다. 기본 10진수.   
 * math.ceil()은 올림, math.floor()는 내림.   
 * int()는 소수점 아래를 그냥 지움.   
