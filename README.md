@@ -6,9 +6,9 @@
 같은 코드를 PyPy3으로 제출하면 메모리를 python3보다 두배로 먹긴 해도, 두배 빨라진다.   
 # BAEKJOON
 2025.05.13 100 solve 달성!!   
-2025.05.17 solved 새싹 clear   
 2025.05.17 CLASS 1++
 2025.05.20 CLASS 2
+2025.06.03 GOLD V 달성!!
 
 ## 00. 기타
 solved.ac에서 마라톤이나 CLASS를 푼 찌꺼기들
