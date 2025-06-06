@@ -1,19 +1,30 @@
-num = int(input())
+n = int(input())
 
-pack_prices = list(map(int, input().split()))
+nums = list(map(int, input().split()))
 
-answer = 0
-while num != 0:
-    card_prices = []
+dp = [0] * n
+dp[0] = nums[0]
 
-    index_max = 0
-    for i in range(num):
-        if pack_prices[i] * (index_max + 1) > pack_prices[index_max] * (i + 1):
-                    index_max = i
 
-    answer += pack_prices[index_max] * (num // (index_max + 1))
-    # 가장 비싼 팩을 최대한 많이 구매한다.
+dp_tops = [0] # 끊긴 리스트의 top-1 dp값을 저장
+dp_maxs = [] # 끊긴 리스트의 max dp값들을 저장
+temp = 0
+for i in range(1, n):
     
-    num %= index_max + 1
+    dp[i] = max(nums[i], nums[i] + dp[i - 1])
+
+    if nums[i] == dp[i]: # dp가 자신으로 초기화됐을때
+        if i >= 2:
+            dp_tops.append(dp[i - 2]) # 끊긴 리스트의 top의 전걸 넣는다. 하나 건너뛴 효과
+        else:
+            dp_tops.append(0)
+        dp_maxs.append(max(dp[temp : i]))
+        temp = i # 어디서 리스트를 끊었는지 초기화
+
+dp_maxs.append(max(dp[temp :]))
+
+answer = float("-inf")
+for i in range(len(dp_maxs)): # 앞 리스트의 top-1 + 뒤 리스트의 max
+    answer = max(answer, dp_maxs[i] + dp_tops[i])
 
 print(answer)
