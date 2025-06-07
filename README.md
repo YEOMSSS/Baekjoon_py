@@ -14,6 +14,39 @@
 ## 00. 기타
 solved.ac에서 마라톤이나 CLASS를 푼 찌꺼기들
 
+#### '구분자'.join(문자열로 이루어진 iterable)
+`print("\n".join(map(str, iterable)))` iterable의 요소를 한줄씩 출력한다.   
+.join은 str일 때만 작동함에 유의   
+
+    print(', '.join(['apple', 'banana', 'kiwi']))         # 리스트
+    print(' | '.join(('a', 'b', 'c')))                    # 튜플
+    print('-'.join('abc'))                                # 문자열 자체
+    print('\n'.join(str(x) for x in range(5)))            # 제너레이터
+
+#### list.sort()
+`words.sort(key=len)`  # 길이 기준 정렬   
+`words.sort(key=str.lower)`  # 대소문자 무시 알파벳 정렬   
+`words.sort(key=lambda x: (len(x), x))`  # 길이 우선, 알파벳 보조 정렬   
+
+`words.sort(reverse=True)`  # 기본 비교 기준의 역순   
+`words.sort(key=len, reverse=True)`  # 길이 기준 내림차순   
+
+`words.sort(key=lambda x: (len(x), x.lower()), reverse=False)` # 길이정렬 후 같으면 알파벳정렬
+
+    words = ["apple", "fig", "pear", "banana", "kiwi"]
+    words.sort(key=lambda x: (len(x), x))
+    print(words)
+    # 출력: ['fig', 'kiwi', 'pear', 'apple', 'banana']
+
+#### sorted(iterable)
+sorted()는 list.sort()와 동일한 사용방식을 가지나, iterable에 사용할 수 있다.   
+원본을 정렬하는 sort()와 달리 값을 반환한다. 값은 list형태로 반환된다.
+
+    words = ["apple", "fig", "pear", "banana", "kiwi"]
+    sorted_words = sorted(words, key=lambda x: (len(x), x))
+    print(sorted_words)
+    # 출력: ['fig', 'kiwi', 'pear', 'apple', 'banana']
+
 #### 올림 계산 (math.ceil(a / b)의 정수형 풀이)
 어떤 수 a를 b로 나눌 때, 나머지가 생기면 몫에 +1을 해야 하는 경우
 (a + b - 1) // b 를 하면 올림한 몫을 구할 수 있다.
@@ -137,7 +170,6 @@ Counter(list) 의 형태로 list 안의 요소가 등장한 횟수를 {요소 : 
 stack : LIFO(Last In, First Out) 구조. 마지막에 넣은 걸 제일 먼저 꺼낸다. python에선 list로 사용.   
 list.pop() : 괄호 안에 아무것도 없다면 리스트의 마지막 요소 list[-1]을 지운다.   
 스택에서 가장 위(top) : stack[-1] 을 의미한다.   
-print("\n".join(map(str, output))) : output(리스트)의 요소들을 \n으로 연결해 출력한다. .join은 str에만 작동   
 
     조건문을 한 줄로 써보자.
     print("YES" if balance == 0 else "NO") : 0이면 YES 출력, 0이 아니면 NO 출력
