@@ -14,6 +14,14 @@
 ## 00. 기타
 solved.ac에서 마라톤이나 CLASS를 푼 찌꺼기들
 
+#### dict.get(key, default)
+dict[key]는 key가 존재하지 않으면 keyError가 나지만,   
+dict.get(key, default)는 default를 반환한다. default가 없다면 None을 반환한다.   
+
+#### collections.Counter(iterable)
+iterable의 개수를 각각 세서 dict의 형태로 반환한다.    
+사실 Counter의 형태로 반환하는 거지만, dict와 같은 역할을 수행할 수 있다.   
+
 #### '구분자'.join(문자열로 이루어진 iterable)
 `print("\n".join(map(str, iterable)))` iterable의 요소를 한줄씩 출력한다.   
 .join은 str일 때만 작동함에 유의   
@@ -133,7 +141,7 @@ append(a); append(b) 와 동일한 효과지만 한 번에 처리할 수 있다.
 math.gcd(a, b) 는 최대공약수를 찾는다.   
 math.lcm(a, b) 는 최소공배수를 찾는다.   
 * 유클리드 호제법   
-a와 b의 대소소에 상관없이 a, b = b, a % b 를 반복해서 b가 0일 때 a가 최대공약수이다.
+a와 b의 대소에 상관없이 a, b = b, a % b 를 반복해서 b가 0일 때 a가 최대공약수이다.
 
 #### 에라토스테네스의 체
 소수의 목록을 구해야 할 때 자주 사용한다. ~N 까지 소수의 목록을 구할 때
