@@ -69,9 +69,9 @@ def main():
 
     N, M = map(int, input().split())
 
-    N_list = list(range(1, N + 1))
+    N_range = range(1, N + 1)
 
-    perms = list(permutations(N_list, M))
+    perms = permutations(N_range, M)
 
     for perm in perms:
         print(*perm)

@@ -77,18 +77,20 @@ divmod(a, b) 는 (a // b, a % b) 튜플을 반환한다.
 ## 510. 브루트 포스 (N과 M) 250611 ~ 
 주로 백트래킹에 대해 다루는 부분이다.
 
+#### range(start, end)
+start부터 end-1까지의 수를 반환하는 iterable이다. 리스트가 아니다.   
+range 타입으로, 숫자들을 미리 저장하는 것이 아니라 필요할 때 값을 생성하는 방식으로 동작한다.   
+
 #### itertools.permutations(iterable, num)
-list에서 서로 다른 요소 중 num개를 선택하는 **순열**을 중복 없이 튜플 형태로 생성한다.  
-
-
-## 501. 브루트 포스 250608 ~ 250611
+list에서 서로 다른 요소 중 num개를 선택하는 **순열**을 중복 없이 **튜플** 형태로 생성한다.  
 
 #### itertools.combinations(iterable, num)
-list에서 서로 다른 요소 중 num개를 선택하는 **조합**을 중복 없이 튜플 형태로 생성한다.  
+list에서 서로 다른 요소 중 num개를 선택하는 **조합**을 중복 없이 **튜플** 형태로 생성한다.  
 `pairs = list(combinations(arr, 2))` 형태로 사용한다.   
 `pairs = [(arr[i], arr[j]) for i in range(len(arr)) for j in range(i + 1, len(arr))]` 은   
 `pairs = [(i, j) for i, j in combinations(arr, 2)]` 로 나타낼 수 있다.
 
+## 501. 브루트 포스 250608 ~ 250611
 
 # 02. 알고리즘 기초 1/2 250513 ~ 250607
 
