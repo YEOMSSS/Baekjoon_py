@@ -48,7 +48,7 @@
 2 3 3
 3 3 3
 '''
-
+'''
 from itertools import combinations_with_replacement
 
 def main():
@@ -60,8 +60,8 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 '''
+
 def main():
 
     N, M = map(int, input().split())
@@ -81,4 +81,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-'''
