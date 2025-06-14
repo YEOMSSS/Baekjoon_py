@@ -39,24 +39,33 @@ N개의 자연수 중에서 M개를 고른 수열
 1 1 1 1
 '''
 
-N, M = map(int, input().split())
-nums = sorted(list(map(int, input().split())))
-used = [False] * N
-result = []
+# 생각을 좀 해야 했다. 이전 수를 저장해보자.
 
-def backtrack():
-    if len(result) == M:
-        print(*result)
-        return
+import sys
+input = sys.stdin.readline
+
+def main():
+    N, M = map(int, input().split())
+    nums = sorted(list(map(int, input().split()))) # 중복된 수가 연달아 있도록 정렬됨 
+    used = [False] * N
+    result = []
+
+    def backtrack():
+        if len(result) == M:
+            print(*result)
+            return
     
-    prev = -1
-    for i in range(len(nums)):
-        if not used[i] and prev != nums[i]:
-            used[i] = True
-            result.append(nums[i])
-            prev = nums[i]
-            backtrack()
-            result.pop()
-            used[i] = False
+        prev = -1
+        for i in range(len(nums)):
+            if not used[i] and prev != nums[i]: # 이전 수와 중복이면 초기화
+                used[i] = True
+                result.append(nums[i])
+                prev = nums[i] # 재귀 들어가기 전에 이전 수 초기화
+                backtrack()
+                result.pop()
+                used[i] = False
 
-backtrack()
+    backtrack()
+
+if __name__ == "__main__":
+    main()
