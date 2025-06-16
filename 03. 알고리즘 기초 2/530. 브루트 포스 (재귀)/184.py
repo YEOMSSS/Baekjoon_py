@@ -46,19 +46,42 @@ istw
 # aeiou중에 하나 필수, 그 나머지중에 2개 필수
 # 정렬되어있고 중복허용안하니 start 필요
 
-L, C = map(int, input().split())
-chars = sorted(list(input().split()))
+import sys
+input = sys.stdin.readline
 
-result = []
-used = [False] * C
+def main():
 
-def backtrack(start):
-    if len(result) == L:
-        print(result)
-        return
-    
-    for i in range(C):
-        if not used[i]:
-            used[i] = True
-            result.append(chars[i])
-            backtrack(i + 1)
+    L, C = map(int, input().split())
+    chars = sorted(list(input().split()))
+
+    result = []
+    used = [False] * C
+    vowels = set("aeiou")
+
+    def backtrack(start):
+        if len(result) == L:
+            count_vowel = 0 # 모음 수 세기
+            count_consonant = 0 # 자음 수 세기
+            for char in result:
+                if char in vowels:
+                    count_vowel += 1
+                else:
+                    count_consonant += 1
+            if count_vowel >= 1 and count_consonant >= 2:
+                print("".join(result))
+            return
+        
+        for i in range(start, C):
+            if not used[i]:
+                used[i] = True
+                result.append(chars[i])
+                backtrack(i + 1)
+                result.pop()
+                used[i] = False
+
+    backtrack(0)
+
+if __name__ == "__main__":
+    main()
+
+# 원콤! 골드 V.
