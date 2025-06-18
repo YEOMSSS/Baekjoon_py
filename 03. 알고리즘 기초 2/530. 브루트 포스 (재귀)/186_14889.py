@@ -71,6 +71,74 @@ Sii는 항상 0이고, 나머지 Sij는 1보다 크거나 같고, 100보다 작�
 예제 2의 경우에 (1, 3, 6), (2, 4, 5)로 팀을 나누면 되고,
 예제 3의 경우에는 (1, 2, 4, 5), (3, 6, 7, 8)로 팀을 나누면 된다.
 '''
+'''
+import sys
+input = sys.stdin.readline
 
+from itertools import combinations
 
+N = int(input())
 
+stat_list = [list(map(int, input().split())) for _ in range(N)]
+
+# 한 팀에 들어가는 선수들의 조합
+team_comb = list(combinations(range(0, N), N // 2))
+
+stat_gap_min = float("inf")
+for i in range(len(team_comb) // 2): # 절반만 순회해도 된다.
+    stat_gap = 0
+
+    team1 = team_comb[i] # 선수조합을 앞에서부터 센다.
+    for pair in combinations(team1, 2): # 팀 내에서 2명씩 짝짓는 경우의 수
+        memb1 = pair[0]
+        memb2 = pair[1]
+        stat_gap += stat_list[memb1][memb2] + stat_list[memb2][memb1]
+
+    team2 = team_comb[-(i + 1)] # 선수조합을 거꾸로 세면 team1의 정반대팀이 된다.
+    for pair in combinations(team2, 2):
+        memb1 = pair[0]
+        memb2 = pair[1]
+        stat_gap -= stat_list[memb1][memb2] + stat_list[memb2][memb1]
+
+    stat_gap_min = min(stat_gap_min, abs(stat_gap))
+
+print(stat_gap_min)
+'''
+# 맞을 것 같지 않냐? 맞았네.
+# 백트래킹으로 직접구현도 한번 해보자.
+
+import sys
+input = sys.stdin.readline
+
+from itertools import combinations
+
+N = int(input())
+stat_list = [list(map(int, input().split())) for _ in range(N)]
+
+min_gap = float("inf")
+all_players = set(range(N))
+team1 = [0] # 팀1에서 항상 0번사람을 챙기는 방식. 절반으로 순회 줄이기
+
+def backtrack(start):
+    global min_gap
+
+    if min_gap == 0: # 차가 0 되버리면 그냥 함수 스톱
+        return
+    
+    if len(team1) == N // 2:
+        team2 = list(all_players - set(team1))
+
+        gap1 = sum(stat_list[i][j] + stat_list[j][i] for i, j in combinations(team1, 2))
+        gap2 = sum(stat_list[i][j] + stat_list[j][i] for i, j in combinations(team2, 2))
+        gap = abs(gap1 - gap2)
+        min_gap = min(min_gap, gap)
+        return
+
+    # 팀1을 구하는 조합
+    for i in range(start, N):
+        team1.append(i)
+        backtrack(i + 1)
+        team1.pop()
+
+backtrack(1) # 이미 team1에 0이 들어가있다. 절대 (0)으로 호출하지 말 것. 중복됨.
+print(min_gap)
