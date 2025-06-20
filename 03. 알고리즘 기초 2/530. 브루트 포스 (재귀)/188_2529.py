@@ -46,3 +46,32 @@ k의 범위는 2 ≤ k ≤ 9 이다.
 1023765489
 '''
 
+# 순열을 생성하고, 그게 부등호 조건에 맞으면 합격이다.
+# 너무 어렵게 생각하지 말고 풀어보자........
+
+from itertools import permutations
+
+K = int(input())
+inequality_signs = list(input().split())
+
+perms = list(permutations(range(10), K + 1))
+
+def find_answer(perms):
+    for perm in perms:
+        for i in range(K):
+            match inequality_signs[i]:
+                case "<":
+                    if not perm[i] < perm[i + 1]:
+                        break
+                case ">":
+                    if not perm[i] > perm[i + 1]:
+                        break
+        else:
+            print("".join(map(str, perm)))
+            return
+        
+find_answer(perms[::-1])
+find_answer(perms)
+
+# 이게 시간초과가 안난다고
+# 항상 최악의 상황으로 푸는 풀이인데. 쌩 브루트포스로 순열 다구하는데 되네
