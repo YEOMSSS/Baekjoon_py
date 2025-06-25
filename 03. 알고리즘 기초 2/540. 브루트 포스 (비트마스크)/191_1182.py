@@ -34,6 +34,7 @@ print(answer)
 '''
 # 너무 쉽게 맞았는데?
 # 비트마스킹으로..
+# mask는 "여러 비트가 모여 있는 비트열"
 
 N, S = map(int, input().split())
 nums = list(map(int, input().split()))
@@ -42,13 +43,15 @@ answer = 0
 # 1부터 2^N - 1까지 모든 부분집합 순회. 공집합 제외
 # 숫자마다 01스위치가 있다고 생각하고, 사용하거나 안하거나 2가지밖에 없으니까.
 # 2진수로 나타내면 모든 부분수열의 스위치 조합이 만들어질 것이다.
-for bit in range(1, 1 << N):
+for mask in range(1, 1 << N):
     subset_sum = 0
     for i in range(N): # 각 자리마다 스위치 켜져있는지 확인
-        if bit & (1 << i):  # 스위치 켜져있으면 sum에 추가
+        if mask & (1 << i):  # 스위치 켜져있으면 sum에 추가
             subset_sum += nums[i]
     if subset_sum == S:
         answer += 1
         # print(bin(bit))
 
 print(answer)
+
+
