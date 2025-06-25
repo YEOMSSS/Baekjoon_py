@@ -59,3 +59,46 @@ D는 E와 친구다.
 예제 출력 4 
 1
 '''
+
+# 깊이가 4인게 존재하는지를 찾는거니까 dfs
+# 재귀 깊이는 최대 4.
+
+import sys
+# sys.setrecursionlimit(10000)
+input = sys.stdin.readline
+
+N, M = map(int, input().split())
+
+graph = [[] for _ in range(N)]
+for _ in range(M):
+    a, b = map(int, input().split())
+    graph[a].append(b)
+    graph[b].append(a)
+
+visited = set()
+found = False
+
+def dfs(node, depth):
+    global found
+
+    if node in visited: # 이미 꺼낸거면 스킵
+        return
+    
+    if found: # 이미 찾았으면 스킵
+        return
+    
+    if depth == 4: # 깊이가 4가되면 찾음스위치 켜고 스킵
+        found = True
+        return
+    
+    visited.add(node) # 이번에 꺼낸 노드
+    for neighbor in graph[node]: # 꺼낸 노드에 이어진 애들
+        dfs(neighbor, depth + 1)
+    visited.discard(node) # 방문 끝났으면 나가
+
+for i in range(N):
+    dfs(i, 0)
+    if found:
+        break
+
+print(1 if found else 0)
