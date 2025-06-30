@@ -54,20 +54,20 @@ for row in range(N):
 
 visited = [False] * (N * N)
 
-def dfs(node):
+def dfsR(node):
     if visited[node]:
         return 0 # 방문된 애들은 스킵
     
     visited[node] = True
     count = 1 # 하나 방문했으니 재귀당 1카운트
     for neighbor in graph[node]:
-        count += dfs(neighbor)
+        count += dfsR(neighbor)
     return count # neighbor들의 재귀카운트가 전부 합해진 값을 반환
 
 answer = []
 for i in range(N * N):
     if not visited[i] and MAPs[i // N][i % N]: # 지도에서 1이 표시돼있으면 dfs
-        answer.append(dfs(i))
+        answer.append(dfsR(i))
 
 print(len(answer))
 print("\n".join(map(str, sorted(answer))))

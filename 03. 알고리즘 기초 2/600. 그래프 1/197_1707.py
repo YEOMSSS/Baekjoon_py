@@ -106,12 +106,12 @@ sys.setrecursionlimit(30000)
 K = int(input())
 
 # 전형적인 dfsR 알고리즘 짜기
-def dfs(node, c): # 현재 노드와 그 노드의 색
+def dfsR(node, c): # 현재 노드와 그 노드의 색
     # color를 이용해 visted의 역할까지 하는 중. 0이 아니면 방문한 노드임
     color[node] = c # 색상판에 색 집어넣기
     for neighbor in graph[node]:
         if color[neighbor] == 0: # 색 지정이 안된 노드라면
-            if not dfs(neighbor, -c): # 현재 색의 반대 색 집어넣기
+            if not dfsR(neighbor, -c): # 현재 색의 반대 색 집어넣기
                 return False
         elif color[neighbor] == c: # 색 지정이 돼있는데 현재 색과 같다면
             return False # 이분그래프가 아닌 것이다
@@ -132,7 +132,7 @@ for _ in range(K):
 
     for i in range(1, V + 1):
         if color[i] == 0: # 연결요소가 하나가 아닐 수 있다.
-            if not dfs(i, 1): # 1에 RED부터 칠하고 dfs실행
+            if not dfsR(i, 1): # 1에 RED부터 칠하고 dfs실행
                 answer = False
                 break
             
