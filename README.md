@@ -25,6 +25,7 @@
 02.540.193_14391 종이 조각 : 브루트포스와 비트마스킹에 대한 아이디어
 02.600.197_1707 이분 그래프 : dfsR로 풀었는데, bfs로도 풀어보자.
 02.602.206_16964 DFS 스페셜 저지 : 존나 어려워 씨발. 완벽히 이해해야 한다.
+02.620.214_2250 트리의 높이와 너비 : 재밌게 푼 문제. 중위순회dfs, 루트찾기, depth찾기, Class로 트리만들기
 
 # 00. 기타
 solved.ac에서 마라톤이나 CLASS를 푼 찌꺼기들
@@ -79,6 +80,48 @@ divmod(a, b) 는 (a // b, a % b) 튜플을 반환한다.
 
 
 # 03. 알고리즘 기초 2/2
+
+## 620. 트리 1 250705 ~
+트리는 DFS 방식의 순회를 사용한다. 전위, 중위, 후위가 대표적이다.
+213_1991번 문제 참고. 개념적으로 도움되는 문제.   
+
+#### 이진 트리
+각 노드가 최대 두 개의 자식 노드를 가지는 트리 구조.   
+루트(Root)  	    트리의 맨 위 노드 (시작점)   
+부모(Parent)	    다른 노드를 가리키는 노드   
+자식(Child)     	부모에게 연결된 노드   
+리프(Leaf)	        자식이 없는 노드 (끝 노드)   
+서브트리(Subtree)   어떤 노드를 루트로 가지는 하위 트리   
+깊이(Depth)     	루트에서 해당 노드까지의 거리   
+
+#### 전위 순회 preorder
+순서: 루트 → 왼쪽 → 오른쪽
+
+    def preorder(node):
+        if node:
+            print(node.value)         # 1. 루트 처리
+            preorder(node.left)       # 2. 왼쪽 서브트리 순회
+            preorder(node.right)      # 3. 오른쪽 서브트리 순회
+
+#### 중위 순회 inorder
+순서: 왼쪽 → 루트 → 오른쪽
+
+    def inorder(node):
+        if node:
+            inorder(node.left)        # 1. 왼쪽 서브트리 순회
+            print(node.value)         # 2. 루트 처리
+            inorder(node.right)       # 3. 오른쪽 서브트리 순회
+
+이진 탐색 트리(BST)의 경우, 중위 순회를 하면 오름차순 정렬된 결과가 나옴.
+
+#### 후위 순회 postorder
+순서: 왼쪽 → 오른쪽 → 루트
+
+    def postorder(node):
+        if node:
+            postorder(node.left)      # 1. 왼쪽 서브트리 순회
+            postorder(node.right)     # 2. 오른쪽 서브트리 순회
+            print(node.value)         # 3. 루트 처리
 
 ## 610. BFS 250703 ~ 250705
 #### 0-1BFS
