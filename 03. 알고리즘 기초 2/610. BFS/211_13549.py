@@ -45,7 +45,7 @@ while queue:
     teleport = current * 2
     if teleport <= 100_000 and (dp[teleport] == -1 or dp[teleport] > dp[current]): # 더 빠른게 오면 갱신
         dp[teleport] = dp[current]
-        queue.append(teleport)
+        queue.appendleft(teleport)
     # +1칸
     current_plus_1 = current + 1
     if current_plus_1 <= 100_000 and (dp[current_plus_1] == -1 or dp[current_plus_1] > dp[current]):
