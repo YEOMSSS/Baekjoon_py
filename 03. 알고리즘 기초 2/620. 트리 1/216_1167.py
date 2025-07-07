@@ -38,7 +38,7 @@ sys.setrecursionlimit(10**6)
 
 V = int(input())
 
-# (자식, 가중치)로 graph[부모]에 저장되도록 해보자.
+# (neighbor, cost)로 graph[node]에 저장되도록 해보자.
 graph = [[] for _ in range(V + 1)]
 for _ in range(V):
     data = list(map(int, input().split()))
