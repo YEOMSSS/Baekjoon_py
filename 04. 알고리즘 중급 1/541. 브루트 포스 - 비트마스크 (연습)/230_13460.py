@@ -64,6 +64,10 @@
 # 그래프로 만들어서 풀었던 것 같다. 몇 번이더라?
 # 그래. 531.222_16197. 동전 하나만 떨구기.
 # 그런데 다른 점은 한칸씩 이동이 아니라 그냥 주르륵 떨어지는거네. 어려운데?
+        
+# 좌표마다 상하좌우로 떨구면 어디에 떨궈지는지를 저장하자.
+# 벽을 만날때까지 한칸 지날때마다 카운트해서 그 값으로 좌표를 갱신해서 저장하자.
+# 카운트 0이면 그냥 원래 위치 그대로.
 
 import sys
 input = sys.stdin.readline
@@ -74,13 +78,31 @@ N, M = map(int, input().split())
 maps = [list(input().rstrip()) for _ in range(N)]
 
 # 한칸짜리 보드일 경우 즉시 종료. 불가능한 경우
-if N == M == 1:
-    print(-1)
-    exit()
+# 근데 필요 없잖아 이거. 문제 조건에 이미 빠졌는데
+# if N == M == 1:
+#     print(-1)
+#     exit()
 
-# 좌표마다 상하좌우로 떨구면 어디에 떨궈지는지를 저장하자.
-# 벽을 만날때까지 한칸 지날때마다 카운트해서 그 값으로 좌표를 갱신해서 저장하자.
-# 카운트 0이면 이동불가 처리하자. 그대로 -1.
+
+# 상하좌우에 맞춰 벽에 닿을 때까지 반복해서 닿는 위치의 좌표를 찾는다.
+# 만약 바로 벽을 만나면 갱신 없음.
+def graph_maker(row, col, direction, prev):
+    if maps[row][col] == "#":
+        return prev
+    elif maps[row][col] == "O":
+        return -7
+    else:
+        prev = row * M + col
+        if direction == 0:
+            return graph_maker(row - 1, col, direction, prev)
+        elif direction == 1:
+            return graph_maker(row + 1, col, direction, prev)
+        elif direction == 2:
+            return graph_maker(row, col - 1, direction, prev)
+        elif direction == 3:
+            return graph_maker(row, col + 1, direction, prev)
+
+# 상하좌우로 기울일 때 구슬이 이동하는 위치를 좌표마다 저장한다.
 graph = [[-1] * 4 for _ in range(N * M)]
 red_ball_coord = 0
 blue_ball_coord = 0
@@ -100,48 +122,81 @@ for row in range(N):
             elif current_coord == "B":
                 blue_ball_coord = current
 
-            # 어차피 벽으로 둘러싸여 있으니 인덱스 넘을일 없음.
+            # 어차피 벽으로 둘러싸여 있으니 인덱스 넘을 일 없음.
             # 현 위치에서 상하좌우로 기울일 때 어디로 구슬이 이동하는지 저장.
-            up_row = row - 1
-            while maps[up_row][col] != "#":
-                if maps[up_row][col] == "O":
-                    graph[current][0] = -7
-                    break
-                up_row += 1
-            else:
-                if up_row != row - 1:
-                    graph[current][0] = up_row * M + col - 1
-
-            down_row = row + 1
-            while maps[down_row][col] != "#":
-                if maps[down_row][col] == "O":
-                    graph[current][1] = -7
-                    break
-                down_row += 1
-            else:
-                if down_row != row + 1:
-                    graph[current][1] = down_row * M + col - 1
-
-            left_col = col - 1
-            while maps[row][left_col] != "#":
-                if maps[row][left_col] == "O":
-                    graph[current][2] = -7
-                    break
-                left_col += 1
-            else:
-                if left_col != col - 1:
-                    graph[current][2] = row * M + left_col - 1
-
-            right_col = col + 1
-            while maps[row][right_col] != "#":
-                if maps[row][right_col] == "O":
-                    graph[current][3] = -7
-                    break
-                right_col += 1
-            else:
-                if right_col != col + 1:
-                    graph[current][3] = row * M + right_col - 1
+            for direction in range(4):
+                graph[current][direction] = graph_maker(row, col, direction, current)
 
 
-print(graph)
+def bfs():
+    queue = deque()
+    visited = set()
 
+    # 빨강, 파랑, 기울인횟수로 묶어서 큐에 밀어넣기
+    queue.append((red_ball_coord, blue_ball_coord, 0))
+
+    while queue:
+        current = queue.popleft()
+        red, blue, count = current
+
+        # 중복되는 동전위치가 온 경우 스킵
+        if (red, blue) not in visited:
+            visited.add((red_ball_coord, blue_ball_coord))
+
+            # 버튼 최대 횟수 10회 확인, 11회 누르자마자 종료
+            if count == 11:
+                print(-1)
+                return
+            
+            # 정답 조건 확인. 빨간 구슬만 떨어지면 바로 종료
+            if red == -7:
+                print(count)
+                return
+            
+            for direction in range(4):
+                next_red, next_blue = graph[red][direction], graph[blue][direction]
+
+                # 구슬이 겹치는 경우 해결. (둘다 구멍에 위치한 경우 제외)
+                # 위로 밀 때는 더 밑에있던 구슬이 한 칸 내려간다.
+                # 아래로 밀 때는 더 위에있던 구슬이 한 칸 올라간다.
+                # 좌로 밀 때는 더 우에있던 구슬이 한 칸 우로간다.
+                # 우로 밀 때는 더 좌에있던 구슬이 한 칸 좌로간다.
+                if next_red == next_blue != -7:
+                    if direction == 0:
+                        if red < blue:
+                            next_blue += M
+                        else:
+                            next_red += M
+                    elif direction == 1:
+                        if red < blue:
+                            next_red -= M
+                        else:
+                            next_blue -= M
+                    elif direction == 2:
+                        if red < blue:
+                            next_blue += 1
+                        else:
+                            next_red += 1
+                    elif direction == 3:
+                        if red < blue:
+                            next_red -= 1
+                        else:
+                            next_blue -= 1
+
+                # 파란 구슬이 떨어지면 인정되지 않음
+                if not next_blue == -7:
+                    queue.append((next_red, next_blue, count + 1))
+    print(-1)
+
+# 실행
+bfs()
+    
+'''
+3 5
+#####
+#ORB#
+#####
+1
+'''
+
+# 풀었다 씨바아아알
