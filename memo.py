@@ -1,59 +1,50 @@
-from collections import deque
+def main():
+    import io
+    import os
 
-import sys
-input = sys.stdin.readline
+    # 초고속 입력 (BufferedReader + 큰 버퍼)
+    input = io.BufferedReader(io.FileIO(0), 1 << 18).readline
 
-N, M = map(int, input().split())
+    N, M, K = map(int, input().split())
+    R = M + 2  # row 길이 + padding 2 (좌우 경계)
 
-graph = [[] for _ in range(101)]
+    # 맵 초기화: 상하좌우 padding을 1('1')로 채움
+    mp = bytearray([49]) * ((N + 2) * R)  # '1' = 49
 
-# 사다리와 뱀의 경우, 앞 6칸에 간선을 추가한다.
-# 사다리나 뱀이 시작되는 칸에는 간선을 추가하지 않는다.
-for _ in range(N + M):
-    X, Y = map(int, input().split())
-    graph[X] = [0] # 사다리나 뱀이 시작되는 칸을 구분한다.
-    for i in range(1, 7):
-        if 0 < X - i and graph[X - i] != [0]:
-            graph[X - i].append(Y)
+    for i in range(1, N + 1):
+        mp[i * R + 1 : (i + 1) * R - 1] = input().strip()
+        mp[i * R + R - 1] = 49  # 오른쪽 끝 패딩도 '1'
 
-# 주사위 범위에 사다리나 뱀이 없는 경우는 6만 넣고,
-# 있다면 주사위에 뱀보다 큰 칸을 하나 추가해준다. (100에 도착하는 경우 제외)
-# 뱀이 +6이면 하나 작은 칸을 추가해준다.
-for i in range(1, 101):
-    if graph[i] == [0]:
-        continue
-    elif graph[i]:
-        for j in range(6, 0, -1):
-            if i + j < 101:
-                if graph[i + j] != [0]:
-                    graph[i].append(i + j)
-                    break
-    else:
-        for j in range(6, 0, -1):
-            if i + j < 101:
-                graph[i].append(i + j)
-                break
+    # 방문배열: 초기값 255(최댓값), 각 위치에 도달할 때 최소 벽 부순 수 기록
+    v = bytearray([255]) * len(mp)
+    v[:R] = bytearray(R)       # 위쪽 패딩 무시
+    v[-R:] = bytearray(R)      # 아래쪽 패딩 무시
+    for i in range(1, N + 1):  # 좌우 패딩도 무시
+        v[i * R] = 0
+        v[i * R + R - 1] = 0
 
-# 주사위 횟수를 저장함과 동시에 중복 방문이 없도록 한다.
-distance = [-1] * 101
+    q = [R + 1]  # 시작점 (1,1) == R+1
+    v[R + 1] = 0
+    d = 1        # 시작 칸 포함 거리
+    end = N * R + M  # (N, M) 위치
 
-# bfs를 돌려 최단거리를 찾는다.
-def bfs():
-    queue = deque()
-    queue.append(1)
-    distance[1] = 0
+    # BFS
+    while q and v[end] > K:
+        nxt = []
+        for j in q:
+            k = v[j]
 
-    while queue:
-        current = queue.popleft()
-        for neighbor in graph[current]:
-            queue.append(neighbor)
-            if distance[neighbor] == -1:
-                distance[neighbor] = distance[current] + 1
-                if neighbor == 100:
-                    return
+            # 상하좌우 4방향 이동
+            for t in (j + R, j - R, j + 1, j - 1):
+                vn = k + (mp[t] & 1)
+                if v[t] > vn <= K:
+                    v[t] = vn
+                    nxt.append(t)
+        q = nxt
+        d += 1
 
-bfs()
-print(distance[100])
+    # 출력 최적화
+    os.write(1, str(-1 if v[end] > K else d).encode('ascii'))
+    os._exit(0)
 
-print(graph)
-print(distance)
+main()
