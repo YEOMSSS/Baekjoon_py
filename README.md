@@ -8,10 +8,10 @@
 
 시간제한이 걸리면 PyPy3으로 제출.  
 같은 코드를 PyPy3으로 제출하면 메모리를 python3보다 두배로 먹긴 해도, 두배 빨라진다.  
-PyPy3으로 dfsR 재귀 빡세게 돌리면 메모리 초과가 난다. 이때는 python3로.
+PyPy3으로 dfsR 재귀 빡세게 돌리면 메모리 초과가 난다. 이때는 python3로.  
 
-정렬문제나 그래프문제는 python으로 풀게 되는 감이 있다.
-나머지는 오히려 c언어가 편한 거 같은데 말이지.
+정렬문제나 그래프문제는 python으로 풀게 되는 감이 있다.  
+나머지는 오히려 c언어가 편한 거 같은데 말이지.  
 
 # BAEKJOON
 
@@ -54,13 +54,18 @@ PyPy3으로 dfsR 재귀 빡세게 돌리면 메모리 초과가 난다. 이때�
 
 solved.ac에서 마라톤이나 CLASS를 푼 찌꺼기들
 
+#### math.comb & math.perm
+comb(N, M)은 nCm이고 (N개중에 M개선택한 조합의 수)  
+perm(N, M)은 nPm이다 (N개중에 M개선택한 순열의 수)
+
 #### string.replace('a', 'b')
 
 string에서 a를 b로 바꿔주는 문자열 method.  
 .replace는 무한이 뒤에 이어붙여 순차적으로 적용할 수 있다.
 
-#### pow()
+#### pow() 분할정복
 
+실버 1629번 참고  
 pow(x, y) 는 x ** y 를 겁나 빠르게 반환한다.  
 pow(x, y, z) 는 x ** y % z 를 겁나 빠르게 반환한다.
 
