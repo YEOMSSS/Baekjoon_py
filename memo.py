@@ -1,2 +1,9 @@
+def main():
+    N, M = input().split()
 
-print(-1.01001 * (2**(-117)))
+    arr = N * int(N)
+
+    print(arr[: int(M)])
+
+
+main()
