@@ -75,18 +75,18 @@ def main() -> None:
     # 2*2칸씩 묶었을 때의 좌표
     pos = (min_coord[0] // 2, min_coord[1] // 2)
 
-    # 최소값 행의 위쪽 행은 반전된 ㄷ자
+    # 최솟값 행의 위쪽 행은 반전된 ㄷ자
     upper = ("R" * (C - 1) + "D" + "L" * (C - 1) + "D") * pos[0]
 
-    # 최소값 행에서 왼쪽은 u자
+    # 최솟값 행에서 왼쪽은 u자
     left = "DRUR" * pos[1]
-    # 최소값의 좌표 행이 짝수면 ㄴ, 홀수면 ㄱ
+    # 최솟값의 좌표 행이 짝수면 ㄴ, 홀수면 ㄱ
     center = "RDR" if min_coord[0] % 2 else "DRR"
-    # 최소값 행에서 오른쪽은 n자
+    # 최솟값 행에서 오른쪽은 n자
     right = "URDR" * (C // 2 - 1 - pos[1])
     middle = left + center + right
 
-    # 최소값 행의 아래쪽 행은 ㄷ자
+    # 최솟값 행의 아래쪽 행은 ㄷ자
     lower = ("L" * (C - 1) + "D" + "R" * (C - 1) + "D") * (R // 2 - 1 - pos[0])
 
     result = upper + middle[:-1] + "D" + lower
