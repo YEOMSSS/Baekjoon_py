@@ -1,4 +1,4 @@
-'''
+"""
 문제
 이진트리를 다음의 규칙에 따라 행과 열에 번호가 붙어있는 격자 모양의 틀 속에 그리려고 한다.
 이때 다음의 규칙에 따라 그리려고 한다.
@@ -33,7 +33,7 @@
 첫째 줄에 너비가 가장 넓은 레벨과 그 레벨의 너비를 순서대로 출력한다.
 너비가 가장 넓은 레벨이 두 개 이상 있을 때에는 번호가 작은 레벨을 출력한다.
 
-예제 입력 1 
+예제 입력 1
 19
 1 2 3
 2 4 5
@@ -54,17 +54,20 @@
 17 -1 19
 18 -1 -1
 19 -1 -1
-예제 출력 1 
+예제 출력 1
 3 18
-'''
+"""
+
 # 재밌긴했다. 진짜로. 중위순회dfs, 루트찾기, depth찾기, Class로 트리만들기..
 # 복잡하다 복잡해
+
 
 class Node:
     def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
+
 
 # 루트 탐색용
 all_nodes = set()
@@ -78,12 +81,12 @@ for _ in range(N):
     all_nodes.add(root)
     if root not in tree:
         tree[root] = Node(root)
-    
+
     parent = tree[root]
 
     if left != -1:
         child_nodes.add(left)
-        if left not in tree: # 초기화 방지.
+        if left not in tree:  # 초기화 방지.
             tree[left] = Node(left)
         parent.left = tree[left]
 
@@ -95,18 +98,21 @@ for _ in range(N):
 
 # 중위순회하면 문제에서 요구하는대로 순회할 수 있다.
 from collections import defaultdict
+
 # defaultdict(list)는 key를 생성할 때 무조건 빈 리스트로 만든다. 쌩으로 append가능
-level = defaultdict(list) # level[depth]에 order를 저장한다.
-order = 0 # 중위순회한 순서
+level = defaultdict(list)  # level[depth]에 order를 저장한다.
+order = 0  # 중위순회한 순서
+
 
 # 중위순회 dfsR
 def inorder(node, depth):
     global order
     if node:
         inorder(node.left, depth + 1)
-        order += 1 # append될 때 순서는 1씩 늘려준다.
+        order += 1  # append될 때 순서는 1씩 늘려준다.
         level[depth].append(order)
         inorder(node.right, depth + 1)
+
 
 # 부모가 없는 노드가 루트가 된다.
 root = (all_nodes - child_nodes).pop()
@@ -115,10 +121,10 @@ inorder(tree[root], 1)
 answer = [0] * (len(level) + 1)
 # 딕셔너리에 .items()를 꼭 붙여 튜플로 바꿔줘야 value까지 반환된다.
 for key, value in level.items():
-    width = max(value) - min(value) + 1 # 레벨에서 가장 긴 너비구하기
-    answer[key] = width # answer[level]에 너비를 저장
+    width = max(value) - min(value) + 1  # 레벨에서 가장 긴 너비구하기
+    answer[key] = width  # answer[level]에 너비를 저장
 
-max_answer = max(answer) # 가장 긴 너비 뽑기.
-print(answer.index(max_answer), max_answer) # 동일너비면 낮은레벨 인덱스.
+max_answer = max(answer)  # 가장 긴 너비 뽑기.
+print(answer.index(max_answer), max_answer)  # 동일너비면 낮은레벨 인덱스.
 
 # 어흐 씨빨씨발씨빨
