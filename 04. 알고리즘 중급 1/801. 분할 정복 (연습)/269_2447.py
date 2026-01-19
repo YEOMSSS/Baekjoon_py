@@ -38,7 +38,6 @@ def main2() -> None:
     answer = [["*"] * N for _ in range(N)]
 
     def draw(n, r, c):
-        nonlocal answer
 
         for y in range(r, r + n):
             for x in range(c, c + n):
@@ -69,7 +68,6 @@ def main() -> None:
     answer = [[" "] * N for _ in range(N)]
 
     def draw(n, r, c):
-        nonlocal answer
 
         for y in range(r, r + n):
             for x in range(c, c + n):
