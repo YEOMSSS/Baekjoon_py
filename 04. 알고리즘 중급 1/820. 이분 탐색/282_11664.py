@@ -90,10 +90,13 @@ def b_search(A, B, P):
 def main() -> None:
 
     data = list(map(int, input().split()))
-
-    # answer = dist_point_segment(data[:3], data[3:6], data[6:])
-    answer = b_search(data[:3], data[3:6], data[6:])
-    print(answer)
+    A, B, C = data[:3], data[3:6], data[6:]
+    if A == B:
+        print(dist(A, C))
+        return
+    # answer = dist_point_segment(A, B, C)
+    answer = b_search(A, B, C)
+    print(f"{answer:.6f}")
 
 
 if __name__ == "__main__":
