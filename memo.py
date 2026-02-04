@@ -1,39 +1,74 @@
-def get_primes_under_8000():
-    # 8000 이하의 소수 리스트 생성
-    sieve = [True] * 8001
-    for i in range(2, int(8000**0.5) + 1):
-        if sieve[i]:
-            for j in range(i * i, 8001, i):
-                sieve[j] = False
-    return [i for i in range(2, 8001) if sieve[i]]
+# Authored by : marigold2003
+# Date : 2026-02-04
+# Link : https://www.acmicpc.net/problem/17089
+
+import sys
+
+input = sys.stdin.readline
 
 
-def solve():
-    primes = get_primes_under_8000()
+# [Summary]
 
-    # 5000자리 근처에서 시작 (예: 10^4999 + 난수)
-    # 실제로는 고정된 숫자로 시작해서 2씩 더하며 찾아도 충분함
-    p = 10**4999 + 1
+# N명의 사람이 있고, 이 중 서로 친구인 셋을 고른다.
+# 세 사람의 친구의 합의 최솟값을 구하시오.
 
-    while True:
-        # p와 p+2가 8000 이하 소수들로 나누어떨어지는지 검사
-        p_ok = True
-        for pr in primes:
-            if p % pr == 0:
-                p_ok = False
-                break
 
-        if p_ok:
-            # p가 통과했다면 p+2도 검사
-            p2_ok = True
-            for pr in primes:
-                if (p + 2) % pr == 0:
-                    p2_ok = False
-                    break
+def main() -> None:
 
-            if p2_ok:
-                print(p)
-                print(p + 2)
-                break
+    # [Ideas]
 
-        p += 2  # 다음 홀수로
+    # 친구인 셋을 찾기만 하면 쉽다.
+    # 어? 이거 사이클인가? 3번 이동해서 원래로 돌아오게 되면 성공.
+
+    # 음, 세칸 이동했는데 세칸 전과 같다면 성공?
+
+    ##########
+
+    N, M = map(int, input().split())
+
+    graph = [[] for _ in range(N + 1)]
+    for _ in range(M):
+        a, b = map(int, input().split())
+        graph[a].append(b)
+        graph[b].append(a)
+
+    friend_count = list(map(len, graph))
+
+    from collections import deque
+
+    result = sys.maxsize
+
+    def bfs(start):
+        nonlocal result
+        queue = deque()
+
+        queue.append(([start], 0))
+
+        while queue:
+            curr, moves = queue.popleft()
+
+            if moves == 3:
+                if curr[-1] == start:
+                    print(curr, sum(friend_count[i] for i in curr[:-1]) - 6)
+                    result = min(result, sum(friend_count[i] for i in curr[:-1]) - 6)
+                continue
+
+            for nei in graph[curr[-1]]:
+                if moves >= 2 and nei == curr[-2]:
+                    continue
+                queue.append((curr + [nei], moves + 1))
+
+    for i in range(1, N + 1):
+        bfs(i)
+
+    ##########
+
+    return
+
+
+# [Review]
+
+#
+
+if __name__ == "__main__":
+    main()
