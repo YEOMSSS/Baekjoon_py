@@ -19,6 +19,23 @@ PyPy3으로 dfsR 재귀 빡세게 돌리면 메모리 초과가 난다. 이때�
 
 solved.ac에서 마라톤이나 CLASS를 푼 찌꺼기들
 
+#### 딕셔너리를 리스트로 기본저장하는 방법
+
+```python
+for i, char in enumerate(text):
+    # 각 문자(키)가 딕셔너리에 없으면 빈 리스트를 만들고 인덱스 추가
+    char_indices.setdefault(char, []).append(i)
+```
+
+또는
+
+```python
+from collections import defaultdict
+
+# 모든 value는 기본적으로 리스트(list)임을 선언
+char_indices = defaultdict(list)
+```
+
 #### itertools.accumulate
 
 ```python
@@ -184,6 +201,8 @@ sorted()는 list.sort()와 동일한 사용방식을 가지나, iterable에 사�
 divmod(a, b) 는 (a // b, a % b) 튜플을 반환한다.
 
 # 05. 알고리즘 중급 2/3 260126 ~
+
+## 551. 브루트 포스 - 문제 (연습) 260205 ~
 
 ## 550. 브루트 포스 - 문제 260126 ~ 260204
 
