@@ -1,4 +1,55 @@
-for ch in input():
-    print(ch * sum(map(int, list(str(ord(ch))))))
+# Authored by : marigold2003
+# Date : 2026-02-15
+# Link : https://www.acmicpc.net/contest/problem/1651/10
 
-print("\n".join(ch * sum(map(int, str(ord(ch)))) for ch in input()))
+
+import sys
+
+input = sys.stdin.readline
+
+
+# [Summary] J번 - "참나... 고작 gpt가 문제를 만들어 봤자..."
+
+# 길이 N인 문자열 S가 주어진다. S는 RGB로 이루어져 있다.
+
+# S의 일부 문자를 수정하여 T를 만들 수 있다.
+# 한 번의 수정으로 문자 하나를 바꿀 수 있으며, 비용이 X가 든다. k번 수정하면 비용은 kX
+
+# 문자열 T의 복잡도 f(T)는 T를 만들기 위해 필요한 최소 작업 횟수이다.
+# 빈 문자열 N을 채우는데, 한 번의 작업으로 연속된 칸을 전부 채울 수 있다. 덮어씌울 수도 있다.
+# 한 번에 작업이 Y의 가치를 가진다. f(T)번 작업하면 가치는 f(T)Y
+
+# f(T)Y - kX 의 최댓값을 구하시오.
+
+
+def main() -> None:
+
+    # [Ideas]
+
+    # 이건 두 문제가 합쳐진 형태다.
+    # T를 만들고, T의 복잡도 f(T)를 구하기.
+
+    # f(T)는 어디선가 풀어본 문제 느낌이 난다.
+    # 중복되는거 퉁치고, dp로 풀면 깔끔.
+    # 아 근데 이건 또 왜이리 안되냐.
+
+    # 문제는 kX인데, 이거 어떻게 구하지?
+    # S를 복잡도가 높은 T로 바꿔야 한다.
+    # 복잡도는 같은 문자가 연속되지 않을수록 높다. 그치.
+    # 근데 X랑 Y도 신경써야 하잖아. 아오
+
+    ##########
+
+    ##########
+
+    return
+
+
+# [Review]
+
+# 멍청했다! 당연히 시간초과가 나겠지.
+# 애초에 이런 문제가 아니였나보다.
+
+
+if __name__ == "__main__":
+    main()
