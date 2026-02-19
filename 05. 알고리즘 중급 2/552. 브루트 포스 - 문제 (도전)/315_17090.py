@@ -42,37 +42,55 @@ def main() -> None:
     N, M = map(int, input().split())
     board = tuple(tuple(input().rstrip()) for _ in range(N))
 
+    # [row][col][neighbors]
+    graph = [[[] for _ in range(M)] for _ in range(N)]
+    roots = []
+
+    for r in range(N):
+        for c in range(M):
+            command = board[r][c]
+
+            # 탈출 가능한 테두리좌표는 root에 append
+            if (
+                (r == 0 and command == "U")
+                or (r == N - 1 and command == "D")
+                or (c == 0 and command == "L")
+                or (c == M - 1 and command == "R")
+            ):
+                roots.append((r, c))
+                continue
+
+            # 도착칸 -> 시작칸으로 digraph 만들기
+            match command:
+                case "U":
+                    graph[r - 1][c].append((r, c))
+                case "D":
+                    graph[r + 1][c].append((r, c))
+                case "L":
+                    graph[r][c - 1].append((r, c))
+                case "R":
+                    graph[r][c + 1].append((r, c))
+
     ##########
 
     from collections import deque
 
+    # root는 전부 탈출 가능한 칸
+    count = len(roots)
+
     queue = deque()
-    count = 0
-    for r in range(N):
-        for c in range(M):
-            cmd = board[r][c]
-            if (
-                (r == 0 and cmd == "U")
-                or (r == N - 1 and cmd == "D")
-                or (c == 0 and cmd == "L")
-                or (c == M - 1 and cmd == "R")
-            ):
-                queue.append((r, c))
-                count += 1
 
-    # graph 없이 상하좌우를 살피며 나를 가리키는 애들을 큐에 넣음
-    dr = [-1, 1, 0, 0]
-    dc = [0, 0, -1, 1]
-    commands = ["D", "U", "R", "L"]  # (nr, nc)에서 내가 되기 위해 필요한 커맨드
+    # root를 가지는 subtree의 모든 node는 탈출 가능한 칸이다.
+    for r, c in roots:
+        queue.append((r, c))
 
+    # 별다른 조건 없이 순회, indexError는 graph 제작에서 전부 걸러졌음
     while queue:
         r, c = queue.popleft()
-        for i in range(4):
-            nr, nc = r + dr[i], c + dc[i]
-            if 0 <= nr < N and 0 <= nc < M:
-                if board[nr][nc] == commands[i]:
-                    queue.append((nr, nc))
-                    count += 1
+
+        for nr, nc in graph[r][c]:
+            queue.append((nr, nc))
+            count += 1
 
     print(count)
 
@@ -84,7 +102,8 @@ def main() -> None:
 # [Review]
 
 # 짜고 보니 순회라 하기도 귀엽다.
-# graph 짜는 부분만 최적화해보자.
+# graph 짜는 부분에 대한 최적화를 여러가지로 할 수 있었다.
+# https://www.acmicpc.net/status?user_id=marigold2003&problem_id=17090&from_mine=1
 
 
 if __name__ == "__main__":

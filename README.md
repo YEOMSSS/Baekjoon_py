@@ -19,6 +19,22 @@ PyPy3으로 dfsR 재귀 빡세게 돌리면 메모리 초과가 난다. 이때�
 
 solved.ac에서 마라톤이나 CLASS를 푼 찌꺼기들
 
+#### next(it)
+
+```python
+it = map(int, input().split())
+
+# next로 iterator의 0번value 꺼내기
+prev = next(it)
+count = 1
+
+# 남은 iterator로 for문 돌리기
+for h in it:
+    if prev <= h:
+        count += 1
+    prev = h
+```
+
 #### 딕셔너리를 리스트로 기본저장하는 방법
 
 ```python
