@@ -224,10 +224,38 @@ divmod(a, b) 는 (a // b, a % b) 튜플을 반환한다.
 
 # 05. 알고리즘 중급 2/3 260126 ~
 
-## 560. 브루트 포스 - 기타 260226 ~
+## 612 - BFS (연습 2)
+
+## 560. 브루트 포스 - 기타 260226 ~ 260301
 
 투포인터 문제가 브루트포스보다 많다.  
 왜그런걸까? 아무튼 투포인터에 익숙해지고 있다.
+
+Counter 같은 hashMap 계열에 익숙해지고 있다.  
+mitm 중간에서 만나기 알고리즘도 재밌네.
+
+#### collections.Counter()
+
+이 친구가 아주 대단한 놈이었다. 딕셔너리를 상속받았구나...  
+dict와 달리 존재하지 않는 key를 입력해도 에러가 안 난다. 그냥 0을 반환함.
+
+```python
+counts = Counter()
+for val in some_data:
+    counts[val] += 1
+```
+
+이런 짓거리가 가능하다는거다.  
+심지어 hashMap이라 in연산도 O(1)이다... 미친거임?
+
+#### itertools.accumulate
+
+누적합을 자동으로 구해준다. C기반이라 루프도는것보다 빠름.
+
+```python
+# initial=0을 주면 자동으로 맨 앞에 0이 붙습니다.
+A = list(accumulate(map(int, input().split()), initial=0))
+```
 
 #### 투 포인터 two pointer
 
