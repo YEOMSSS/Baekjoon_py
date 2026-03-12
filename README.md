@@ -41,7 +41,7 @@ for h in it:
     prev = h
 ```
 
-#### 딕셔너리를 리스트로 기본저장하는 방법
+#### 딕셔너리를 리스트로 기본저장하는 방법 defaultdict
 
 ```python
 for i, char in enumerate(text):
@@ -57,6 +57,9 @@ from collections import defaultdict
 # 모든 value는 기본적으로 리스트(list)임을 선언
 char_indices = defaultdict(list)
 ```
+
+defaultdict는 접근만 해도 새 key가 생기기 때문에  
+웬만하면 get으로 value를 받아오는 편이 좋다.
 
 #### itertools.accumulate
 
