@@ -1,7 +1,7 @@
 import sys
 
 sys.stdin = open(
-    r"C:\Users\junha\OneDrive\Desktop\Baekjoon_py\00. Data Structure\week 2\input.txt",
+    r"C:\Users\junha\OneDrive\Desktop\Baekjoon_py\00. Data Structure\input.txt",
     "r",
 )
 input = sys.stdin.readline
