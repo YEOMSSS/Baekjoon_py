@@ -20,7 +20,7 @@ for row in range(N):
     for col in range(M):
         current = maps_default[row][col]
         if current == 0:
-            not_walls.append(row * M  + col)
+            not_walls.append(row * M + col)
         if current == 2:
             viruses.append(row * M + col)
 
@@ -30,14 +30,15 @@ directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 # 브루트포스로 벽을 세우는 모든 경우 찾기
 new_wall_locates = combinations(not_walls, 3)
 
+
 def bfs(comb, maps_default):
     # 방문 확인 배열
     visited = [False] * (N * M)
-    
+
     # 3개의 벽을 새로 세우기
     for coord in comb:
         maps_default[coord // M][coord % M] = 1
-        
+
     # 큐 만들기
     queue = deque()
     # 시작 바이러스 큐에 push
@@ -70,8 +71,9 @@ def bfs(comb, maps_default):
     # 세웠던 벽을 다시 제거해서 원상복귀
     for coord in comb:
         maps_default[coord // M][coord % M] = 0
-    
+
     return safe_zone
+
 
 # 벽을 새로 세운 모든 조합에 대하여 bfs를 돌려 최댓값 찾기
 result = 0
