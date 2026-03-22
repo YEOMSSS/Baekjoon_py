@@ -45,79 +45,90 @@ def main() -> None:
     directions = [(0, -1), (-1, 0), (1, 0), (0, 1)]
 
     R, C = map(int, input().split())
-    board = [list(map(int, input().split())) for _ in range(R)]
+
+    board = []
+    board.append([0] * (C + 2))
+
+    for _ in range(R):
+        row = [0]
+        row.extend(map(int, input().split()))
+        row.append(0)
+        board.append(row)
+
+    board.append([0] * (C + 2))
 
     # 방문시 섬id가 저장된다.
-    visited = [[0] * C for _ in range(R)]
-
+    visited = [[0] * (C + 2) for _ in range(R + 2)]
+    # info[id] = size가 된다.
     island_size_info = [0]
 
     def bfs(start, sid):
-        island_coords = set()
 
         queue = deque()
+
         queue.append(start)
         visited[start[0]][start[1]] = sid
-        island_coords.add(start)
 
-        count = 1
+        size = 1
 
         while queue:
             r, c = queue.popleft()
 
             for dr, dc in directions:
                 nr, nc = r + dr, c + dc
-
-                if nr < 0 or nr >= R:
-                    continue
-                if nc < 0 or nc >= C:
-                    continue
-                if visited[nr][nc]:
-                    continue
+                # 1이 아니라면 pass
                 if not board[nr][nc]:
                     continue
+                # 이미 id가 지정되어 있으면 pass
+                if visited[nr][nc]:
+                    continue
 
+                # queue에 push하고 id를 지정한다.
                 queue.append((nr, nc))
                 visited[nr][nc] = sid
+                # 1칸 방문했으니 size가 1 늘어난다.
+                size += 1
 
-                count += 1
-
-        island_size_info.append(count)
+        # append하면 index가 곧 id가 된다.
+        island_size_info.append(size)
 
         return
 
     sid = 0
-    for r in range(R):
-        for c in range(C):
+    for r in range(1, R + 1):
+        for c in range(1, C + 1):
             if not board[r][c]:
                 continue
             if visited[r][c]:
                 continue
+
+            # 섬에 id를 붙여 visited에 기록하고 크기를 구한다.
             sid += 1
             bfs((r, c), sid)
 
     answer = 0
-    for r in range(R):
-        for c in range(C):
+    for r in range(1, R + 1):
+        for c in range(1, C + 1):
+            # 1은 확인할 필요가 없다.
             if board[r][c]:
                 continue
 
+            # 같은 섬에 동시에 인접할 수 있으니 걸러준다.
             tempset = set()
 
+            # 현재 0이 1로 바뀌기 때문에 1에서 시작한다.
             count = 1
             for dr, dc in directions:
                 nr, nc = r + dr, c + dc
-                if nr < 0 or nr >= R:
-                    continue
-                if nc < 0 or nc >= C:
-                    continue
                 if not board[nr][nc]:
                     continue
                 tempset.add(visited[nr][nc])
 
+            # 인접한 섬의 크기를 합친다.
             for sid in tempset:
                 count += island_size_info[sid]
 
+            # 0이 1로 바뀔 때마다 갱신한다.
             answer = max(answer, count)
 
     print(answer)
@@ -131,6 +142,7 @@ def main() -> None:
 
 # 발상이 생각보다 오래 걸렸네?
 # 하지만 다음엔 굉장히 쉽게 풀 수 있을 것 같다.
+# padding하고 풀면 더 효율적일거같음.
 
 
 if __name__ == "__main__":
