@@ -12,19 +12,22 @@ input = sys.stdin.readline
 
 # Authored by : marigold2003
 # Date : 2026-03-25
-# Problem Number : 0000000000
+# Problem Number : 2001
 
 
-# [Summary] 제목
+# [Summary] 2001. 파리 퇴치
 
-#
+# N*N(<= 15) board에 랜덤한 값이 들어가 있다.
+# M*M(<= N) 영역 내부 값의 총합의 최댓값을 구하시오.
 
 
 def main() -> None:
 
     # [Ideas]
 
-    #
+    # 누적합처럼 생겼다.
+    # 2차원 배열 누적합은 어떤식으로 해야하지?
+    # 그냥 row만 누적합으로 써서 대충풀까.
 
     ##########
 
