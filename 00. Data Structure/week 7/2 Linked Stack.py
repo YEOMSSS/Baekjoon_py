@@ -57,12 +57,24 @@ def display():
     print(result)
 
 
-push(10)
-push(20)
-push(30)
-display()
-print(size())
+# push(10)
+# push(20)
+# push(30)
+# display()
+# print(size())
 
-print(pop())
-display()
-print(peek())
+# print(pop())
+# display()
+# print(peek())
+
+if __name__ == "__main__":
+    push(10)
+    push(20)
+    push(30)
+    display()
+
+    print("pop:", pop())
+    display()
+
+    print("peek:", peek())
+    print("size:", size())
