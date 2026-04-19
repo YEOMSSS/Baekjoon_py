@@ -39,7 +39,7 @@ for term in Data:
             # 일단 pop하기 전에 뭐가 있는지 보자.
             op = stack[-1]
 
-            # 형님이 동생 밑에 있긴 짜증나서 나온다.
+            # 형님이 동생 밑에 있긴 짜증나서 나온다. 같아도 나온다.
             if precedendce(term) <= precedendce(op):
                 output.append(stack.pop())
 

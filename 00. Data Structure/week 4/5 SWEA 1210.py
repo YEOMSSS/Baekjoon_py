@@ -62,6 +62,7 @@ def main() -> None:
                 while x < 99 and ladder[y][x + 1] == 1:
                     x += 1
                 y -= 1
+
             # 길이 없으면 한칸 위로
             else:
                 # y -= 1이 반복되고 있다. if에서 빼내고 싶어진다.
