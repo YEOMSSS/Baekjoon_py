@@ -30,7 +30,7 @@ def main() -> None:
     ##########
 
     # 민증 까기
-    def precedendce(op):
+    def precedence(op):
         if op in ("*", "/"):
             return 2
         elif op in ("+", "-"):
@@ -72,7 +72,7 @@ def main() -> None:
                     op = stack[-1]
 
                     # 형님이 동생 밑에 있긴 짜증나서 나온다.
-                    if precedendce(term) <= precedendce(op):
+                    if precedence(term) <= precedence(op):
                         output.append(stack.pop())
 
                     # 형님이 내 위로 오면 이해해야지.

@@ -12,8 +12,10 @@ while Data:
 
     if ch in pare.values():  # dict의 value만 모아놓은 것
         stack.append(ch)
+
     elif stack and pare[ch] == stack[-1]:
         stack.pop()
+
     else:
         is_matched = False
         break
